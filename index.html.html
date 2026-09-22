@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EEF1EB">
+<meta name="description" content="كافيه: تعريف بالمكان والمنيو. للطلب ابعتلنا على واتساب.">
+<title>كافيه</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2314241E'/%3E%3Ctext x='50' y='72' font-size='66' text-anchor='middle' fill='%23A9C77A' font-family='sans-serif' font-weight='700'%3E%D9%83%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #EEF1EB;
+    --ink: #14241E;
+    --muted: #55665D;
+    --line: #D3DAD0;
+    --accent: #A9C77A;
+    --on-accent: #14241E;
+
+    --saucer: #E0E6D9;
+    --edge: #C7D0BF;
+    --cup: #FFFFFF;
+    --shade: rgba(20, 36, 30, .10);
+    --spoon: #BFC8B9;
+    --coffee: #5A3A2B;
+    --crema: #C9A27E;
+    --foam: #F3E7D6;
+
+    --bar-h: 84px;
+    --font: "Alexandria", "Segoe UI", Tahoma, system-ui, sans-serif;
+
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0E1713;
+      --ink: #E8EFE6;
+      --muted: #9DB2A6;
+      --line: #24352D;
+      --saucer: #1B2A24;
+      --edge: #2C4037;
+      --cup: #DDE6DA;
+      --shade: rgba(0, 0, 0, .35);
+      --spoon: #3A5045;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0E1713;
+    --ink: #E8EFE6;
+    --muted: #9DB2A6;
+    --line: #24352D;
+    --saucer: #1B2A24;
+    --edge: #2C4037;
+    --cup: #DDE6DA;
+    --shade: rgba(0, 0, 0, .35);
+    --spoon: #3A5045;
+  }
+
+  *, *::before, *::after { box-sizing: inherit; }
+  html {
+    background: var(--ground);
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+  /* ---------- Hero ---------- */
+  .hero { overflow-x: clip; padding: 36px 20px 8px; }
+  .hero-in { max-width: 1200px; margin: 0 auto; display: grid; gap: 12px; align-items: center; }
+  h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: clamp(4.6rem, 12vw, 8.5rem);
+    line-height: 1.2;
+  }
+  .hero h2 {
+    margin: 6px 0 0;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    line-height: 1.5;
+  }
+  .hero p {
+    margin: 16px 0 0;
+    max-width: 30em;
+    color: var(--muted);
+    font-size: 1.075rem;
+    line-height: 1.95;
+  }
+  .peek {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 6px 0;
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 3px solid var(--accent);
+  }
+  .cup { display: block; width: 120vw; max-width: none; height: auto; margin-top: 8px; }
+  .cup .disc   { fill: var(--accent); }
+  .cup .saucer { fill: var(--saucer); stroke: var(--edge); stroke-width: 2; }
+  .cup .well   { fill: none; stroke: var(--edge); stroke-width: 2; }
+  .cup .spoon  { fill: var(--spoon); }
+  .cup .body   { fill: var(--cup); stroke: var(--edge); stroke-width: 2; }
+  .cup .hole   { fill: var(--saucer); stroke: var(--edge); stroke-width: 2; }
+  .cup .shade  { fill: var(--shade); }
+  .cup .coffee { fill: var(--coffee); }
+  .cup .ring   { fill: none; stroke: var(--crema); stroke-width: 6; opacity: .45; }
+  .cup .foam   { fill: var(--foam); }
+  .cup .vein   { fill: none; stroke: var(--coffee); stroke-width: 5; stroke-linecap: round; }
+
+  @media (min-width: 900px) {
+    .hero { padding: 56px 40px 32px; min-height: min(86svh, 820px); display: flex; align-items: center; }
+    .hero-in { width: 100%; grid-template-columns: 1.15fr .85fr; gap: 24px; }
+    .cup { width: clamp(420px, 46vw, 660px); margin-top: 0; }
+  }
+
+  /* ---------- Menu ---------- */
+  .menu-head {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 20px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 16px;
+  }
+  .menu-head h2 { margin: 0; font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.3; }
+  .menu-head p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+  .tabs {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 5;
+    background: var(--ground);
+    border-bottom: 1px solid var(--line);
+  }
+  .tabs-in {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-in::-webkit-scrollbar { display: none; }
+  .tabs a {
+    flex: none;
+    padding: 16px 2px 13px;
+    color: var(--muted);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+  }
+  .tabs a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+  .menu-in { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .cat { padding-top: 44px; scroll-margin-top: 56px; }
+  .cat h3 { margin: 0 0 6px; font-weight: 700; font-size: 1.7rem; line-height: 1.4; }
+  .items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; }
+  .item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .nm { display: block; font-weight: 600; font-size: 1.1rem; line-height: 1.5; }
+  .ds { margin: 2px 0 0; color: var(--muted); font-size: .95rem; line-height: 1.7; }
+  .pr { flex: none; font-weight: 600; font-size: 1.1rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .pr small { font-weight: 400; font-size: .85em; color: var(--muted); }
+  @media (min-width: 800px) {
+    .items { grid-template-columns: 1fr 1fr; column-gap: 64px; }
+  }
+
+  .foot {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 20px calc(var(--bar-h) + 16px);
+    color: var(--muted);
+    font-size: .95rem;
+  }
+
+  /* ---------- Order link (bottom) ---------- */
+  .order-wrap {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    pointer-events: none;
+  }
+  .order {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 380px);
+    height: 54px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--ground);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(20, 36, 30, .28);
+  }
+  .order:hover { background: var(--accent); color: var(--on-accent); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>كافيه</h1>
+      <h2>مكان بسيط للقعدة الحلوة.</h2>
+      <p>شاي وقهوة وعصاير وأكل خفيف وحلويات، من غير تعقيد ولا دوشة. الشاي بنعناع طازة، والكركديه بيتعمل عندنا في المكان، وأم علي بتطلع سخنة من الفرن. اقعد على راحتك، واطلب اللي نفسك فيه.</p>
+      <a class="peek" href="#menu">شوف المنيو</a>
+    </div>
+
+    <svg class="cup" viewBox="0 0 640 640" role="img" aria-label="فنجان قهوة من فوق">
+      <circle class="disc" cx="352" cy="348" r="270"/>
+      <circle class="saucer" cx="320" cy="320" r="270"/>
+      <circle class="well" cx="320" cy="320" r="222"/>
+      <g transform="rotate(-9 320 320)">
+        <rect class="spoon" x="300" y="521" width="170" height="10" rx="5"/>
+        <ellipse class="spoon" cx="288" cy="526" rx="34" ry="22"/>
+      </g>
+      <rect class="body" x="470" y="282" width="92" height="76" rx="38"/>
+      <rect class="hole" x="492" y="304" width="46" height="32" rx="16"/>
+      <circle class="shade" cx="326" cy="328" r="175"/>
+      <circle class="body" cx="320" cy="320" r="175"/>
+      <circle class="body" cx="320" cy="320" r="150"/>
+      <circle class="coffee" cx="320" cy="320" r="138"/>
+      <circle class="ring" cx="320" cy="320" r="126"/>
+      <g class="foam">
+        <ellipse cx="320" cy="372" rx="70" ry="32"/>
+        <ellipse cx="320" cy="330" rx="58" ry="28"/>
+        <ellipse cx="320" cy="292" rx="44" ry="24"/>
+        <ellipse cx="320" cy="258" rx="28" ry="18"/>
+      </g>
+      <path class="vein" d="M320 238V402"/>
+    </svg>
+  </div>
+</header>
+
+<main>
+  <section id="menu" aria-labelledby="menu-title">
+    <div class="menu-head">
+      <h2 id="menu-title">المنيو</h2>
+      <p>الأسعار بالجنيه المصري</p>
+    </div>
+
+    <nav class="tabs" aria-label="أقسام المنيو"><div class="tabs-in"><a href="#hot" aria-current="true">مشروبات ساخنة</a><a href="#cold">مشروبات باردة</a><a href="#food">أكل خفيف</a><a href="#sweet">حلويات</a></div></nav>
+
+    <div class="menu-in">
+      <section class="cat" id="hot" aria-labelledby="t-hot">
+        <h3 id="t-hot">مشروبات ساخنة</h3>
+        <ul class="items">
+          <li class="item">
+            <div><span class="nm">شاي</span><p class="ds">كوباية شاي سادة أو بالسكر</p></div>
+            <span class="pr">20 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">شاي بالنعناع</span><p class="ds">نعناع طازة</p></div>
+            <span class="pr">25 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">ينسون</span><p class="ds">مغلي على أصوله</p></div>
+            <span class="pr">20 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">قهوة تركي</span><p class="ds">سادة أو مظبوط أو زيادة</p></div>
+            <span class="pr">30 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">نسكافيه بالحليب</span><p class="ds">كوباية كبيرة وحليب سخن</p></div>
+            <span class="pr">40 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">سحلب بالمكسرات</span><p class="ds">سخن ومغطّى بالمكسرات وجوز الهند</p></div>
+            <span class="pr">45 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">قرفة بالحليب</span><p class="ds">دافية ومعمولة بالقرفة العيني</p></div>
+            <span class="pr">35 <small>ج</small></span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cat" id="cold" aria-labelledby="t-cold">
+        <h3 id="t-cold">مشروبات باردة</h3>
+        <ul class="items">
+          <li class="item">
+            <div><span class="nm">ليمون بالنعناع</span><p class="ds">ليمون عصير طازة مع نعناع وتلج</p></div>
+            <span class="pr">40 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">كركديه</span><p class="ds">بارد ومعمول في المكان</p></div>
+            <span class="pr">30 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">عصير مانجو</span><p class="ds">مانجو طبيعي من غير مية</p></div>
+            <span class="pr">55 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">عصير فراولة</span><p class="ds">فراولة طازة</p></div>
+            <span class="pr">50 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">آيس كوفي</span><p class="ds">قهوة باردة بالحليب والتلج</p></div>
+            <span class="pr">55 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">موهيتو</span><p class="ds">ليمون ونعناع وصودا</p></div>
+            <span class="pr">50 <small>ج</small></span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cat" id="food" aria-labelledby="t-food">
+        <h3 id="t-food">أكل خفيف</h3>
+        <ul class="items">
+          <li class="item">
+            <div><span class="nm">توست جبنة رومي</span><p class="ds">توست محمّر بجبنة رومي سايحة</p></div>
+            <span class="pr">45 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">ساندوتش فراخ مشوية</span><p class="ds">مع خس وصوص الثوم</p></div>
+            <span class="pr">65 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">فطير مشلتت بالجبنة</span><p class="ds">طبقات مقرمشة وجبنة</p></div>
+            <span class="pr">60 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">بطاطس مقلية</span><p class="ds">طبق كبير للمشاركة</p></div>
+            <span class="pr">40 <small>ج</small></span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cat" id="sweet" aria-labelledby="t-sweet">
+        <h3 id="t-sweet">حلويات</h3>
+        <ul class="items">
+          <li class="item">
+            <div><span class="nm">أم علي</span><p class="ds">سخنة من الفرن</p></div>
+            <span class="pr">55 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">كنافة بالقشطة</span><p class="ds">بالقطر الخفيف</p></div>
+            <span class="pr">60 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">وافل بالنوتيلا</span><p class="ds">مع موز أو فراولة</p></div>
+            <span class="pr">70 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">بان كيك بالعسل</span><p class="ds">٣ قطع مع زبدة وعسل</p></div>
+            <span class="pr">65 <small>ج</small></span>
+          </li>
+          <li class="item">
+            <div><span class="nm">بسبوسة</span><p class="ds">قطعة كبيرة بجوز الهند</p></div>
+            <span class="pr">35 <small>ج</small></span>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </section>
+</main>
+
+<div class="foot">كافيه</div>
+
+<!-- رقم واتساب بالصيغة الدولية من غير + ومن غير صفر في الأول -->
+<div class="order-wrap">
+  <a class="order" href="https://wa.me/201031780530" target="_blank" rel="noopener" aria-label="اضغط للطلب على واتساب">اضغط للطلب</a>
+</div>
+
+<script>
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.tabs a'));
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + e.target.id;
+          if (on) {
+            a.setAttribute('aria-current', 'true');
+            try { a.scrollIntoView({ inline: 'center', block: 'nearest' }); } catch (_) {}
+          } else {
+            a.removeAttribute('aria-current');
+          }
+        });
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('.cat').forEach(function (s) { io.observe(s); });
+  })();
+</script>
+</body>
+</html>
